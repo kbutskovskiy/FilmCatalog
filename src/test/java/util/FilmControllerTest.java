@@ -1,8 +1,9 @@
 package util;
 
 import com.example.catalogfilm.CatalogFilmApplication;
-import com.example.catalogfilm.model.Director;
-import com.example.catalogfilm.service.DirectorService;
+import com.example.catalogfilm.constants.GenreEnum;
+import com.example.catalogfilm.model.Film;
+import com.example.catalogfilm.service.FilmService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,31 +21,31 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest(classes = CatalogFilmApplication.class)
 @AutoConfigureMockMvc
-public class DirectorControllerTest {
+public class FilmControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private DirectorService directorService;
+    private FilmService filmService;
 
     @Test
-    public void getDirectorTest_whenMockMVC_thenReturnsHttpStatusOK() throws Exception {
-        mockMvc.perform(get("/director?directorUuid=4b60f5e7-5ec4-4d20-bf63-bd060f8097f9")).andDo(print())
+    public void getFilmTest_whenMockMVC_thenReturnsHttpStatusOK() throws Exception {
+        mockMvc.perform(get("/film?filmUuid=4b60f5e7-5ec4-4d20-bf63-bd060f8097f9")).andDo(print())
                 .andExpect(status().isOk());
     }
 
     @Test
-    public void addDirectorTest_whenMockMVC_thenReturnHttpStatusOK() throws Exception {
-        Director director = new Director(UUID.fromString("4b60f5e7-5ec4-4d20-bf63-bd060f8097f9"), "Kirill", 21, "Russia", null);
-        mockMvc.perform(post("/director")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(asJsonString(director)))
+    public void addFilmTest_whenMockMVC_thenReturnHttpStatusOK() throws Exception {
+        Film Film = new Film(UUID.fromString("4b60f5e7-5ec4-4d20-bf63-bd060f8097f9"), "KillTheBill", GenreEnum.HORROR, 8);
+        mockMvc.perform(post("/film")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(asJsonString(Film)))
                 .andExpect(status().isOk());
     }
 
-    public static String asJsonString(final Director director) {
+    public static String asJsonString(final Film Film) {
         try {
-            return new ObjectMapper().writeValueAsString(director);
+            return new ObjectMapper().writeValueAsString(Film);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
