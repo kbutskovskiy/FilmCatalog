@@ -25,6 +25,7 @@ public class SecurityConfig{
                 .requestMatchers("/helloAdmin").hasRole("ADMIN")
                 .requestMatchers("/helloAny").permitAll()
                 .requestMatchers("/director").permitAll()
+                .requestMatchers("/film").permitAll()
                 .and()
                 .httpBasic()
                 .and()
