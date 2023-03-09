@@ -1,10 +1,8 @@
 package com.example.catalogfilm.controller;
 
-import com.example.catalogfilm.model.Director;
 import com.example.catalogfilm.model.Film;
 import com.example.catalogfilm.service.FilmService;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.cfg.NotYetImplementedException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
