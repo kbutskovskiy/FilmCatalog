@@ -2,6 +2,8 @@ package com.example.catalogfilm.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -24,8 +26,10 @@ public class SecurityConfig{
                 .requestMatchers("/helloUser").hasRole("USER")
                 .requestMatchers("/helloAdmin").hasRole("ADMIN")
                 .requestMatchers("/helloAny").permitAll()
-                .requestMatchers("/director").permitAll()
-                .requestMatchers("/film").permitAll()
+                .requestMatchers(HttpMethod.GET, "/director").permitAll()
+                .requestMatchers(HttpMethod.POST, "/director").permitAll()
+                .requestMatchers(HttpMethod.GET, "/film").permitAll()
+                .requestMatchers(HttpMethod.POST, "/film").permitAll()
                 .and()
                 .httpBasic()
                 .and()
