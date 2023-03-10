@@ -8,9 +8,8 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 public class CounterServiceImpl implements CounterService{
-    private int count = 0;
+    private static int count = 0;
 
-    @Async
     public synchronized void increment() {
         count++;
     }

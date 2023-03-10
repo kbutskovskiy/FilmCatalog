@@ -19,9 +19,7 @@ public class CounterController {
 
     @GetMapping("/async")
     public String async() {
-        for (int i = 0; i < 3; ++i){
-            asyncService.asyncIncrement();
-        }
+        asyncService.createFlow();
         return "The value was incremented on 3000000";
     }
 
